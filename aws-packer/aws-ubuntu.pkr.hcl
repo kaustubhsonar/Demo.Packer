@@ -40,19 +40,24 @@ build {
     "source.amazon-ebs.ubuntu"
   ]
 
+  # provisioner "shell" {
+  #   inline = [
+  #     "sudo sleep 10",
+  #     "pwd",
+  #     "sudo apt update",
+  #     "sudo apt install nginx -y",
+  #     "sudo systemctl enable nginx",
+  #     "sudo systemctl start nginx",
+  #     "sudo ufw allow proto tcp from any to any port 22,80,443",
+  #   ]
+  # }
+
   provisioner "shell" {
-    inline = [
-      "sudo sleep 10",
-      "pwd",
-      "sudo apt update",
-      "sudo apt install nginx -y",
-      "sudo systemctl enable nginx",
-      "sudo systemctl start nginx",
-      "sudo ufw allow proto tcp from any to any port 22,80,443",
-    ]
+    environment_vars = ["PROVISIONERTEST=ProvisionerTest1"]
+    scripts          = ["./scripts/install-tools.sh"]
   }
 
-   provisioner "file" {
+  provisioner "file" {
     source      = "app/test.txt"
     destination = "/tmp/test.txt"
   }
