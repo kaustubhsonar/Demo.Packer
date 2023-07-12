@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo "installation started"
 sudo sleep 10
 sudo apt update
 sudo apt install nginx -y
