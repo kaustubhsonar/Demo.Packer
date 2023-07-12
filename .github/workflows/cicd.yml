@@ -50,6 +50,7 @@ jobs:
       - name: Packer Validate - Branches
         if: "startsWith(github.ref, 'refs/heads/')"
         run: packer validate -var aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }} -var aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws-packer/ 
-      # - name: Packer Build - Branches
-      #   if: "startsWith(github.ref, 'refs/heads/')"
-      #   run: packer build -var aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }} -var aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws-packer/ 
+     
+      - name: Packer Build - Branches
+        if: "startsWith(github.ref, 'refs/heads/')"
+        run: packer build -var aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }} -var aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws-packer/ 
