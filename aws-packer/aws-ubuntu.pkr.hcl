@@ -41,7 +41,7 @@ build {
 
   provisioner "shell" {
     environment_vars = ["PROVISIONERTEST=ProvisionerTest1"]
-    scripts          = ["scripts/install-tools.sh"]
+    scripts          = ["aws-packer/scripts/install-tools.sh"]
   }
 
   # provisioner "file" {
