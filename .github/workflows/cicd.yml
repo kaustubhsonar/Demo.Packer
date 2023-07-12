@@ -35,7 +35,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           pwd
-          ls
+          ls aws-packer/
       
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -47,6 +47,9 @@ jobs:
       - name: Packer Init
         run: packer init aws-packer/ 
         
-      - name: Packer Build - Branches
+      - name: Packer Validate - Branches
         if: "startsWith(github.ref, 'refs/heads/')"
-        run: packer build -var aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }} -var aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws-packer/ 
+        run: packer validate -var aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }} -var aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws-packer/ 
+      # - name: Packer Build - Branches
+      #   if: "startsWith(github.ref, 'refs/heads/')"
+      #   run: packer build -var aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }} -var aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws-packer/ 
